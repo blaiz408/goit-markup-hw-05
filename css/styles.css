@@ -7,6 +7,7 @@
   --primary-text-color-theme-dark: #ffffff;
   --secondary-text-color-theme-dark: rgba(255, 255, 255, 0.6);
   --card-item: 3;
+  --transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 body {
   font-family: var(--primary-font-family);
@@ -104,21 +105,18 @@ address {
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.1);
   color: #afb1b8;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color var(--transition), color var(--transition);
 }
 .social-list-icon {
   fill: currentColor;
-  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: fill var(--transition);
 }
 .social-list-link:hover,
 .social-list-link:focus {
   background-color: var(--accent-color);
+  color: var(--primary-text-color-theme-dark);
 }
 
-.social-list-link:hover .social-list-icon,
-.social-list-link:focus .social-list-icon {
-  fill: var(--primary-text-color-theme-dark);
-}
 /* LOGO */
 .logo {
   font-family: var(--secondary-font-family);
@@ -172,7 +170,7 @@ address {
   line-height: 1.14;
   letter-spacing: 0.02em;
   position: relative;
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color var(--transition);
 }
 
 .nav-list-link:hover,
@@ -188,7 +186,7 @@ address {
   height: 4px;
   border-radius: 2px;
   background-color: var(--accent-color);
-  bottom: 0;
+  bottom: -1px;
 }
 
 .contact-list {
@@ -286,7 +284,7 @@ address {
   text-align: center;
   color: var(--secondary-text-color-theme-light);
 }
-.service-list-part {
+.service-list-item {
   position: relative;
 }
 .service-list-description {
@@ -296,11 +294,13 @@ address {
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 70px;
+  padding: 27px;
+  font-weight: 700;
   line-height: 1.14;
   background-color: rgba(47, 48, 58, 0.8);
   align-items: center;
   justify-content: center;
+  text-transform: uppercase;
 }
 /* TEAM */
 .team {
@@ -340,23 +340,19 @@ address {
   justify-content: center;
   align-items: center;
   height: 92px;
-  border: 1px solid #afb1b8;
+  border: 1px solid currentColor;
+  color: #afb1b8;
   border-radius: 4px;
-  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color var(--transition);
 }
 .clients-icon {
-  fill: #afb1b8;
+  fill: currentColor;
 }
 .clients-list-link:hover,
 .clients-list-link:focus {
-  border-color: var(--accent-color);
+  color: var(--accent-color);
 }
 
-.clients-list-link:hover .clients-icon,
-.clients-list-link:focus .clients-icon {
-  fill: var(--accent-color);
-}
 
 /* FOOTER */
 
@@ -367,6 +363,7 @@ address {
 }
 .footer-container {
   display: flex;
+  align-items: baseline;
 }
 .footer-logo {
   display: block;
@@ -376,25 +373,21 @@ address {
   margin-bottom: 9px;
 }
 
-.address-place {
-  font-family: var(--primary-font-family);
-  font-style: normal;
-  color: var(--primary-text-color-theme-dark);
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
+
 .address-place:hover,
-:focus {
+.address-place:focus {
   color: var(--accent-color);
 }
 
 .address-list-link {
-  font-style: normal;
-  line-height: 1.81;
   color: var(--secondary-text-color-theme-dark);
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color var(--transition);
+}
+.address-list-link[target="_blank"] {
+  color: var(--primary-text-color-theme-dark);
 }
 .address-list-link:hover,
-:focus {
+.address-list-link:focus {
   color: var(--accent-color);
 }
 .footer-item:not(:last-child) {
@@ -433,8 +426,8 @@ address {
   background: #f5f4fa;
   border-radius: 4px;
   border: none;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color var(--transition),
+    color var(--transition), box-shadow var(--transition);
 }
 .portfolio-button-filter:hover,
 .portfolio-button-filter:focus,
@@ -457,8 +450,7 @@ address {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-right: 24px;
-  padding-left: 24px;
+  padding: 24px;
   font-size: 18px;
   line-height: 1.55;
   position: absolute;
@@ -468,7 +460,7 @@ address {
   height: 100%;
   overflow: auto;
   transform: translateY(100%);
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform var(--transition);
 }
 .project-list-link:hover .project-overlay-description,
 .project-list-link:focus .project-overlay-description {
@@ -497,7 +489,7 @@ address {
 }
 .project-list-link {
   display: block;
-  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: box-shadow var(--transition);
 }
 .project-list-link:hover,
 .project-list-link:focus {
@@ -519,6 +511,7 @@ address {
   visibility: hidden;
   pointer-events: none;
 }
+
 .modal {
   position: absolute;
   top: 50%;
@@ -527,6 +520,10 @@ address {
   width: 528px;
   height: 580px;
   background-color: #ffffff;
+  transition: transform 500ms linear;
+}
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0) rotate(135deg);
 }
 .modal-close-btn {
   position: absolute;
